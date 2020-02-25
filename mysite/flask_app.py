@@ -33,6 +33,7 @@ def spellname_auto():
     return Response(json.dumps(SPELLS), mimetype='application/json')
 
 
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/grimoire/spell", methods=['GET', 'POST'])
 @app.route("/grimoire/spell/", methods=['GET', 'POST'])
 def grimoire_spell_lookup(msg=[]):
@@ -42,14 +43,16 @@ def grimoire_spell_lookup(msg=[]):
 
     if form.validate_on_submit():
         gdb = grimoiredb.GrimoireDb()
+        spell = gdb.getSpell(form.spellname.data, format='dict')
         gdb.db.close()
-        msg="""<p class="larger">"""+m['duna']+"""</p><br><a href="/ptime/add">+</a>"""
-        return msg
+    else:
+        spell = {}
         
 
     return render_template('grimoire.html',
                            title='Grimoire',
-                           form=form,)
+                           form=form,
+                           spell=spell,)
 
 
 if __name__ == "__main__":

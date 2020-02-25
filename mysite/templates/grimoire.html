@@ -35,7 +35,57 @@
 					<span style="color: red;">[{{ error }}]</span>
 				{% endfor %}
 			</td>
+			<td align="left"><input type="submit" value="OK" class="larger"></td>
 		</tr>
 	</table>
 </form>
+
+{% if spell%}
+<hr>
+<p class="medium">{{ spell.name }}</p></br>
+<table>
+	{% if spell.type %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">type</td>
+	<td align="left">{{spell.type}}</td>
+	</tr>{% endif %}
+	{% if spell.level %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">level</td>
+	<td align="left">{{spell.level}}</td>
+	</tr>{% endif %}
+	{% if spell.components %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">components</td>
+	<td align="left">{{spell.components}}</td>
+	</tr>{% endif %}
+	{% if spell.castingtime %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">casting time</td>
+	<td align="left">{{spell.castingtime}}</td>
+	</tr>{% endif %}
+	{% if spell.range %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">range</td>
+	<td align="left">{{spell.range}}</td>
+	</tr>{% endif %}
+	{% if spell.area %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">area</td>
+	<td align="left">{{spell.area}}</td>
+	</tr>{% endif %}
+	{% if spell.duration %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">duration</td>
+	<td align="left">{{spell.duration}}</td>
+	</tr>{% endif %}
+	{% if spell.savingthrow %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">saving throw</td>
+	<td align="left">{{spell.savingthrow}}</td>
+	</tr>{% endif %}
+	{% if spell.spellresistance %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">spell resistance</td>
+	<td align="left">{{spell.spellresistance}}</td>
+	</tr>{% endif %}
+	<tr>
+	<td align="right" style="padding-right:8px">description</td>
+	<td align="left">{% autoescape false %}{{spell.description}}{% endautoescape %}</td>
+	</tr>
+</table>
+{% endif %}
+<br>
+
 {% endblock %}
