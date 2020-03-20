@@ -16,16 +16,17 @@ class GrimoireDb():
             self.cursor.execute('''
                 CREATE TABLE IF NOT EXISTS spells( id INTEGER PRIMARY KEY AUTOINCREMENT,
                         name TEXT UNIQUE NOT NULL,
-                        type TEXT,
+                        school TEXT,
                         level TEXT,
                         components TEXT,
                         castingtime TEXT,
                         range TEXT,
-                        area TEXT,
+                        areatarget TEXT,
                         duration TEXT,
                         savingthrow TEXT,
                         spellresistance TEXT,
-                        description TEXT);
+                        description TEXT,
+                        enhancement TEXT);
                 ''')
             self.db.commit()
         except Exception as e:
@@ -38,8 +39,8 @@ class GrimoireDb():
         if format=='bool':
             return False if not sp else True
         else:
-            cols = ['id', 'name', 'type', 'level', 'components', 'castingtime', 'range',
-                    'area', 'duration', 'savingthrow', 'spellresistance', 'description']
+            cols = ['id', 'name', 'school', 'level', 'components', 'castingtime', 'range', 'areatarget',
+                    'duration', 'savingthrow', 'spellresistance', 'description', 'enhancement']
             return {x: sp[n] for n,x in enumerate(cols)}
 
 
@@ -49,12 +50,12 @@ class GrimoireDb():
         else:
             #print(len(spelldata.values()))
             #print(spelldata)
-            spelltup = (spelldata[x] for x in ['name', 'type', 'level', 'components', 'castingtime', 'range',
-                    'area', 'duration', 'savingthrow', 'spellresistance', 'description'])
+            spelltup = (spelldata[x] for x in ['name', 'school', 'level', 'components', 'castingtime', 'range', 'areatarget',
+                    'duration', 'savingthrow', 'spellresistance', 'description', 'enhancement'])
             #print(spelltup)
             self.cursor.execute('''
-                INSERT INTO spells( name, type, level, components, castingtime, range, area,
-                duration, savingthrow, spellresistance, description) VALUES (?,?,?,?,?,?,?,?,?,?,?);''',
+                INSERT INTO spells( name, school, level, components, castingtime, range, areatarget,
+                duration, savingthrow, spellresistance, description, enhancement) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);''',
                                 tuple(spelltup))
             self.db.commit()
         return {'success': name + ' added to the db.'}

@@ -44,9 +44,9 @@
 <hr>
 <p class="medium">{{ spell.name }}</p></br>
 <table>
-	{% if spell.type %}<tr style="white-space: nowrap;">
-	<td align="right" style="padding-right:8px">type</td>
-	<td align="left">{{spell.type}}</td>
+	{% if spell.school %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">school</td>
+	<td align="left">{{spell.school}}</td>
 	</tr>{% endif %}
 	{% if spell.level %}<tr style="white-space: nowrap;">
 	<td align="right" style="padding-right:8px">level</td>
@@ -64,9 +64,9 @@
 	<td align="right" style="padding-right:8px">range</td>
 	<td align="left">{{spell.range}}</td>
 	</tr>{% endif %}
-	{% if spell.area %}<tr style="white-space: nowrap;">
-	<td align="right" style="padding-right:8px">area</td>
-	<td align="left">{{spell.area}}</td>
+	{% if spell.areatarget %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">area/target</td>
+	<td align="left">{{spell.areatarget}}</td>
 	</tr>{% endif %}
 	{% if spell.duration %}<tr style="white-space: nowrap;">
 	<td align="right" style="padding-right:8px">duration</td>
@@ -84,6 +84,10 @@
 	<td align="right" style="padding-right:8px">description</td>
 	<td align="left">{% autoescape false %}{{spell.description}}{% endautoescape %}</td>
 	</tr>
+	{% if spell.enhancement %}<tr style="white-space: nowrap;">
+	<td align="right" style="padding-right:8px">enhancement</td>
+	<td align="left">{{spell.enhancement}}</td>
+	</tr>{% endif %}
 </table>
 {% endif %}
 <br>
